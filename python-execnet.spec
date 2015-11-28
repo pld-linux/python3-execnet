@@ -7,7 +7,7 @@
 Summary:	Rapid multi-Python deployment
 Name:		python-%{module}
 Version:	1.3.0
-Release:	3
+Release:	4
 License:	MIT
 Group:		Libraries/Python
 Source0:	https://pypi.python.org/packages/source/e/execnet/%{module}-%{version}.tar.gz
