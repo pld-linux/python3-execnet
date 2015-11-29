@@ -15,7 +15,7 @@ Source0:	https://pypi.python.org/packages/source/e/execnet/%{module}-%{version}.
 Patch0:		setup_deps.patch
 URL:		http://codespeak.net/execnet
 BuildRequires:	rpm-pythonprov
-BuildRequires:	rpmbuild(macros) >= 1.219
+BuildRequires:	rpmbuild(macros) >= 1.710
 BuildRequires:	sed >= 4.0
 %if %{with python2}
 BuildRequires:	python-setuptools >= 7.0
