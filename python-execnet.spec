@@ -2,41 +2,46 @@
 # Conditional build:
 %bcond_without	python2 # CPython 2.x module
 %bcond_without	python3 # CPython 3.x module
+%bcond_without	doc	# Sphinx documentation
 %bcond_with	tests	# py.test based tests [use network]
 
 %define 	module	execnet
 Summary:	Rapid multi-Python deployment
 Summary(pl.UTF-8):	Szybkie wdrożenia na wielu Pythonach
 Name:		python-%{module}
-Version:	1.4.1
-Release:	2
+Version:	1.5.0
+Release:	1
 License:	MIT
 Group:		Libraries/Python
-Source0:	https://pypi.python.org/packages/source/e/execnet/%{module}-%{version}.tar.gz
-# Source0-md5:	0ff84b6c79d0dafb7e2971629c4d127a
-URL:		http://codespeak.net/execnet
+#Source0Download: https://pypi.org/simple/execnet/
+Source0:	https://files.pythonhosted.org/packages/source/e/execnet/%{module}-%{version}.tar.gz
+# Source0-md5:	8df56985c656642cd26d233a1c74837c
+URL:		http://codespeak.net/execnet/
 %if %{with python2}
 BuildRequires:	python-modules >= 1:2.6
 BuildRequires:	python-setuptools >= 7.0
 BuildRequires:	python-setuptools_scm
 %if %{with tests}
-BuildRequires:	python-apipkg
+BuildRequires:	python-apipkg >= 1.4
 BuildRequires:	python-py
 BuildRequires:	python-pytest
 %endif
 %endif
 %if %{with python3}
-BuildRequires:	python3-modules >= 1:3.2
+BuildRequires:	python3-modules >= 1:3.3
 BuildRequires:	python3-setuptools >= 7.0
 BuildRequires:	python3-setuptools_scm
 %if %{with tests}
-BuildRequires:	python3-apipkg
+BuildRequires:	python3-apipkg >= 1.4
 BuildRequires:	python3-py
 BuildRequires:	python3-pytest
 %endif
 %endif
 BuildRequires:	rpm-pythonprov
 BuildRequires:	rpmbuild(macros) >= 1.714
+%if %{with doc}
+BuildRequires:	sphinx-pdg
+%endif
 Requires:	python-modules >= 1:2.6
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -62,7 +67,7 @@ przeznaczone do następujących zastosowań:
 Summary:	Rapid multi-Python deployment
 Summary(pl.UTF-8):	Szybkie wdrożenia na wielu Pythonach
 Group:		Libraries/Python
-Requires:	python3-modules >= 1:3.2
+Requires:	python3-modules >= 1:3.3
 
 %description -n python3-%{module}
 execnet provides carefully tested means to ad-hoc interact with Python
@@ -81,6 +86,17 @@ przeznaczone do następujących zastosowań:
  - pisania i wdrażania wieloprocesowych aplikacji hybrydowych
  - pisania skryptów do administrowania wieloma hostami
 
+%package apidocs
+Summary:	API documentation for Python execnet module
+Summary(pl.UTF-8):	Dokumentacja API modułu Pythona execnet
+Group:		Documentation
+
+%description apidocs
+API documentation for Python execnet module.
+
+%description apidocs -l pl.UTF-8
+Dokumentacja API modułu Pythona execnet.
+
 %prep
 %setup -q -n %{module}-%{version}
 
@@ -89,7 +105,8 @@ przeznaczone do następujących zastosowań:
 %py_build
 
 %if %{with tests}
-%{__python} -mpytest testing
+PYTHONPATH=$(pwd) \
+%{__python} -m pytest testing
 %endif
 %endif
 
@@ -97,8 +114,13 @@ przeznaczone do następujących zastosowań:
 %py3_build
 
 %if %{with tests}
-%{__python3} -mpytest testing
+PYTHONPATH=$(pwd) \
+%{__python3} -m pytest testing
 %endif
+%endif
+
+%if %{with doc}
+%{__make} -C doc html
 %endif
 
 %install
@@ -121,7 +143,7 @@ rm -rf $RPM_BUILD_ROOT
 %if %{with python2}
 %files
 %defattr(644,root,root,755)
-%doc CHANGELOG ISSUES.txt LICENSE README.txt
+%doc CHANGELOG.rst ISSUES.txt LICENSE README.rst
 %{py_sitescriptdir}/%{module}
 %{py_sitescriptdir}/%{module}-%{version}-py*.egg-info
 %endif
@@ -129,7 +151,13 @@ rm -rf $RPM_BUILD_ROOT
 %if %{with python3}
 %files -n python3-%{module}
 %defattr(644,root,root,755)
-%doc CHANGELOG ISSUES.txt LICENSE README.txt
+%doc CHANGELOG.rst ISSUES.txt LICENSE README.rst
 %{py3_sitescriptdir}/%{module}
 %{py3_sitescriptdir}/%{module}-%{version}-py*.egg-info
+%endif
+
+%if %{with doc}
+%files apidocs
+%defattr(644,root,root,755)
+%doc doc/_build/html/{_images,_static,example,*.html,*.js}
 %endif
