@@ -9,32 +9,34 @@
 Summary:	Rapid multi-Python deployment
 Summary(pl.UTF-8):	Szybkie wdrożenia na wielu Pythonach
 Name:		python-%{module}
-Version:	1.5.0
-Release:	2
+Version:	1.7.1
+Release:	1
 License:	MIT
 Group:		Libraries/Python
 #Source0Download: https://pypi.org/simple/execnet/
 Source0:	https://files.pythonhosted.org/packages/source/e/execnet/%{module}-%{version}.tar.gz
-# Source0-md5:	8df56985c656642cd26d233a1c74837c
+# Source0-md5:	f911a8db40cd43654f816ded0c4bfdb4
 URL:		http://codespeak.net/execnet/
 %if %{with python2}
-BuildRequires:	python-modules >= 1:2.6
+BuildRequires:	python-modules >= 1:2.7
 BuildRequires:	python-setuptools >= 7.0
 BuildRequires:	python-setuptools_scm
 %if %{with tests}
 BuildRequires:	python-apipkg >= 1.4
 BuildRequires:	python-py
 BuildRequires:	python-pytest
+BuildRequires:	python-pytest-timeout
 %endif
 %endif
 %if %{with python3}
-BuildRequires:	python3-modules >= 1:3.3
+BuildRequires:	python3-modules >= 1:3.4
 BuildRequires:	python3-setuptools >= 7.0
 BuildRequires:	python3-setuptools_scm
 %if %{with tests}
 BuildRequires:	python3-apipkg >= 1.4
 BuildRequires:	python3-py
 BuildRequires:	python3-pytest
+BuildRequires:	python3-pytest-timeout
 %endif
 %endif
 BuildRequires:	rpm-pythonprov
@@ -42,7 +44,7 @@ BuildRequires:	rpmbuild(macros) >= 1.714
 %if %{with doc}
 BuildRequires:	sphinx-pdg
 %endif
-Requires:	python-modules >= 1:2.6
+Requires:	python-modules >= 1:2.7
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -67,7 +69,7 @@ przeznaczone do następujących zastosowań:
 Summary:	Rapid multi-Python deployment
 Summary(pl.UTF-8):	Szybkie wdrożenia na wielu Pythonach
 Group:		Libraries/Python
-Requires:	python3-modules >= 1:3.3
+Requires:	python3-modules >= 1:3.4
 
 %description -n python3-%{module}
 execnet provides carefully tested means to ad-hoc interact with Python
