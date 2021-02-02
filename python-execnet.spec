@@ -3,20 +3,20 @@
 %bcond_without	python2 # CPython 2.x module
 %bcond_without	python3 # CPython 3.x module
 %bcond_without	doc	# Sphinx documentation
-%bcond_with	tests	# py.test based tests [use network]
+%bcond_with	tests	# py.test based tests [use network, need some environment]
 
 %define 	module	execnet
 Summary:	Rapid multi-Python deployment
 Summary(pl.UTF-8):	Szybkie wdrożenia na wielu Pythonach
 Name:		python-%{module}
-Version:	1.7.1
+Version:	1.8.0
 Release:	1
 License:	MIT
 Group:		Libraries/Python
 #Source0Download: https://pypi.org/simple/execnet/
 Source0:	https://files.pythonhosted.org/packages/source/e/execnet/%{module}-%{version}.tar.gz
-# Source0-md5:	f911a8db40cd43654f816ded0c4bfdb4
-URL:		http://codespeak.net/execnet/
+# Source0-md5:	388ee8e2c60df6b578781c8aadb1359b
+URL:		https://codespeak.net/execnet/
 %if %{with python2}
 BuildRequires:	python-modules >= 1:2.7
 BuildRequires:	python-setuptools >= 7.0
@@ -108,7 +108,9 @@ Dokumentacja API modułu Pythona execnet.
 
 %if %{with tests}
 PYTHONPATH=$(pwd) \
-%{__python} -m pytest testing
+PYTEST_DISABLE_PLUGIN_AUTOLOAD=1 \
+PYTEST_PLUGINS="pytest_timeout" \
+%{__python} -m pytest testing --timeout=20
 %endif
 %endif
 
@@ -117,7 +119,9 @@ PYTHONPATH=$(pwd) \
 
 %if %{with tests}
 PYTHONPATH=$(pwd) \
-%{__python3} -m pytest testing
+PYTEST_DISABLE_PLUGIN_AUTOLOAD=1 \
+PYTEST_PLUGINS="pytest_timeout" \
+%{__python3} -m pytest testing --timeout=20
 %endif
 %endif
 
