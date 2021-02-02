@@ -29,7 +29,7 @@ BuildRequires:	python-pytest-timeout
 %endif
 %endif
 %if %{with python3}
-BuildRequires:	python3-modules >= 1:3.4
+BuildRequires:	python3-modules >= 1:3.5
 BuildRequires:	python3-setuptools >= 7.0
 BuildRequires:	python3-setuptools_scm
 %if %{with tests}
@@ -69,7 +69,7 @@ przeznaczone do następujących zastosowań:
 Summary:	Rapid multi-Python deployment
 Summary(pl.UTF-8):	Szybkie wdrożenia na wielu Pythonach
 Group:		Libraries/Python
-Requires:	python3-modules >= 1:3.4
+Requires:	python3-modules >= 1:3.5
 
 %description -n python3-%{module}
 execnet provides carefully tested means to ad-hoc interact with Python
