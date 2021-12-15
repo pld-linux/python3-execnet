@@ -19,7 +19,7 @@ Source0:	https://files.pythonhosted.org/packages/source/e/execnet/%{module}-%{ve
 URL:		https://codespeak.net/execnet/
 %if %{with python2}
 BuildRequires:	python-modules >= 1:2.7
-BuildRequires:	python-setuptools >= 7.0
+BuildRequires:	python-setuptools >= 1:7.0
 BuildRequires:	python-setuptools_scm
 %if %{with tests}
 BuildRequires:	python-apipkg >= 1.4
@@ -30,7 +30,7 @@ BuildRequires:	python-pytest-timeout
 %endif
 %if %{with python3}
 BuildRequires:	python3-modules >= 1:3.5
-BuildRequires:	python3-setuptools >= 7.0
+BuildRequires:	python3-setuptools >= 1:7.0
 BuildRequires:	python3-setuptools_scm
 %if %{with tests}
 BuildRequires:	python3-apipkg >= 1.4
