@@ -9,20 +9,19 @@
 Summary:	Rapid multi-Python deployment
 Summary(pl.UTF-8):	Szybkie wdrożenia na wielu Pythonach
 Name:		python-%{module}
-Version:	1.8.0
-Release:	2
+Version:	1.9.0
+Release:	1
 License:	MIT
 Group:		Libraries/Python
 #Source0Download: https://pypi.org/simple/execnet/
 Source0:	https://files.pythonhosted.org/packages/source/e/execnet/%{module}-%{version}.tar.gz
-# Source0-md5:	388ee8e2c60df6b578781c8aadb1359b
+# Source0-md5:	69f7f721586d5a02b66cac7cb388b7e3
 URL:		https://codespeak.net/execnet/
 %if %{with python2}
 BuildRequires:	python-modules >= 1:2.7
 BuildRequires:	python-setuptools >= 1:7.0
 BuildRequires:	python-setuptools_scm
 %if %{with tests}
-BuildRequires:	python-apipkg >= 1.4
 BuildRequires:	python-py
 BuildRequires:	python-pytest
 BuildRequires:	python-pytest-timeout
@@ -33,7 +32,6 @@ BuildRequires:	python3-modules >= 1:3.5
 BuildRequires:	python3-setuptools >= 1:7.0
 BuildRequires:	python3-setuptools_scm
 %if %{with tests}
-BuildRequires:	python3-apipkg >= 1.4
 BuildRequires:	python3-py
 BuildRequires:	python3-pytest
 BuildRequires:	python3-pytest-timeout
