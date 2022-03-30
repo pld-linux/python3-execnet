@@ -10,7 +10,7 @@ Summary:	Rapid multi-Python deployment
 Summary(pl.UTF-8):	Szybkie wdrożenia na wielu Pythonach
 Name:		python-%{module}
 Version:	1.9.0
-Release:	3
+Release:	4
 License:	MIT
 Group:		Libraries/Python
 #Source0Download: https://pypi.org/simple/execnet/
