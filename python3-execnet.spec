@@ -21,7 +21,6 @@ BuildRequires:	python3-hatchling
 BuildRequires:	python3-installer
 BuildRequires:	python3-modules >= 1:3.8
 %if %{with tests}
-BuildRequires:	python3-py
 BuildRequires:	python3-pytest
 BuildRequires:	python3-pytest-timeout
 %endif
