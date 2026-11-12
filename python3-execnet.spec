@@ -7,17 +7,17 @@
 Summary:	Rapid multi-Python deployment
 Summary(pl.UTF-8):	Szybkie wdrożenia na wielu Pythonach
 Name:		python3-%{module}
-Version:	2.1.1
+Version:	2.1.2
 Release:	1
 License:	MIT
 Group:		Libraries/Python
 #Source0Download: https://pypi.org/simple/execnet/
 Source0:	https://files.pythonhosted.org/packages/source/e/execnet/%{module}-%{version}.tar.gz
-# Source0-md5:	f533366fb5b8fd802a9c4d15d6ca9796
+# Source0-md5:	057396dce2b1627b57220d53017a940e
 URL:		https://codespeak.net/execnet/
 BuildRequires:	python3-build
 BuildRequires:	python3-hatch-vcs
-BuildRequires:	python3-hatchling
+BuildRequires:	python3-hatchling >= 1.26
 BuildRequires:	python3-installer
 BuildRequires:	python3-modules >= 1:3.8
 %if %{with tests}
